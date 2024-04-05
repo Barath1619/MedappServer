@@ -43,22 +43,9 @@ const userSchema = new  mangoose.Schema({
     userType: {
         type: String,
         required: true,
-    },
-    speciality:{
-        type: String,
-        required: false,
     }
-   
 })
 
-userSchema.pre("save", async function(next){
-    const user = this;
-    if(this.isModified('password'))return next()
 
-    console.log(user.password,user.email)
-    user.password = await bcrypt.hash(user.password,8);
-    next();
 
-})
-
-mangoose.model("users",userSchema);
+mangoose.model("approval",userSchema);
